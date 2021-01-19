@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,12 +25,13 @@ SECRET_KEY = 'cywrk3d5%5gw6ecnr#&!_63d0yhqe#xkb3)x!d&*xd0-06^)%4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'simpleui',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -88,14 +89,15 @@ WSGI_APPLICATION = 'SchoolOnline.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'SchoolOnlineDB',
+        'NAME': 'schoolonlineusers',
         'USER': 'root', # 账号
         'PASSWORD': 'z19881205', # 密码
         'HOST': '127.0.0.1', # HOST
         'POST': 3306, # 端口
     }
 }
-
+###多路由配置
+#DATABASE_ROUTERS = ['SchoolOnline.database_router.DatabaseAppsRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -119,9 +121,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
+# LANGUAGE_CODE = 'en-us'
+#
+# TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -133,4 +135,78 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+###配置静态文件
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "image"),
+]
+
+### django-simpleui 后台优化配置
+
+LANGUAGE_CODE = 'zh-Hans'
+TIME_ZONE = 'Asia/Shanghai'
+
+#关闭默认图标
+#SIMPLEUI_DEFAULT_ICON = False
+
+# #粒子动画默认开启
+# SIMPLEUI_LOGIN_PARTICLES = False
+# # 指定simpleui默认的主题,指定一个文件名，相对路径就从simpleui的theme目录读取
+# #相对路径在venv/Lib/site-packages/simpleui/static/admin/simpleui-x/theme/xred.less/x-red.css
+# SIMPLEUI_DEFAULT_THEME = 'admin.lte.css'
+#
+# #首页配置,改的是进去之后的首页显示
+# SIMPLEUI_HOME_PAGE = 'https://www.baidu.com'
+# #首页标题
+# SIMPLEUI_HOME_TITLE = '百度一下你就知道'
+# #首页图标,支持element-ui和fontawesome的图标，参考https://fontawesome.com/icons图标
+# SIMPLEUI_HOME_ICON = 'fa fa-user'
+# #设置simpleui 点击首页图标跳转的地址
+# SIMPLEUI_INDEX = 'https://www.88cto.com'
+
+# import time
+# SIMPLEUI_CONFIG = {
+#     'system_keep': False,
+#     'menu_display': ['Simpleui', '测试', '权限认证', '动态菜单测试'],      # 开启排序和过滤功能, 不填此字段为默认排序和全部显示, 空列表[] 为全部不显示.
+#     'dynamic': True,    # 设置是否开启动态菜单, 默认为False. 如果开启, 则会在每次用户登陆时动态展示菜单内容
+#     'menus': [{
+#         'name': 'Simpleui',
+#         'icon': 'fas fa-code',
+#         'url': 'https://gitee.com/tompeppa/simpleui'
+#     }, {
+#         'app': 'auth',
+#         'name': '权限认证',
+#         'icon': 'fas fa-user-shield',
+#         'models': [{
+#             'name': '用户',
+#             'icon': 'fa fa-user',
+#             'url': 'auth/user/'
+#         }]
+#     }, {
+#         'name': '测试',
+#         'icon': 'fa fa-file',
+#         'models': [{
+#             'name': 'Baidu',
+#             'url': 'http://baidu.com',
+#             'icon': 'far fa-surprise'
+#         }, {
+#             'name': '内网穿透',
+#             'url': 'https://www.wezoz.com',
+#             'icon': 'fab fa-github'
+#         }]
+#     }, {
+#         'name': '动态菜单测试' ,
+#         'icon': 'fa fa-desktop',
+#         'models': [{
+#             'name': time.time(),
+#             'url': 'http://baidu.com',
+#             'icon': 'far fa-surprise'
+#         }]
+#     }]
+# }
+#
+# SIMPLEUI_ICON = {
+#     '测试': 'fab fa-apple',
+#     '员工管理': 'fas fa-user-tie'
+# }
