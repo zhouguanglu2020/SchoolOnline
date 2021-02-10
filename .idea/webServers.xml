@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="9a511e67-154b-4876-9d40-2e06c524270d" name="腾讯云服务器" url="http://jingyoujiaoyu.top/">
+        <fileTransfer accessType="SFTP" host="49.233.21.151" port="22" sshConfigId="3c8b6b0d-2ede-425e-81fb-e02e0b55d3df" sshConfig="root@49.233.21.151:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

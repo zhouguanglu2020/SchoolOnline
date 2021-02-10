@@ -1,16 +1,29 @@
-# -*- coding: utf-8 -*-
+"""SchoolOnline URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/3.1/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-@Time : 2021/1/21 8:02
-@Author : Administrator
-@Email : zhouguanglu2012@163.com
-@File : urls.py
-@Project : SchoolOnline
-@Description：
-"""
+
 from django.urls import path,re_path
-from Api import  views
+from . import views
+
 
 urlpatterns = [
-    path('', views.zhwdsb,name='dsb'),
-    re_path(r'^index.html$',views.zhwdsb2,name='dsb2')
+    re_path(r'^$', views.get_index_page, name='get_index_page'),
 ]
+
+from Web import views as view_error
+#配置异常页面
+handler403 = view_error.page_permission_denied
+handler404 = view_error.page_not_found
+handler500 = view_error.page_inter_error
