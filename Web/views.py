@@ -4,14 +4,14 @@ from django.shortcuts import render, redirect, HttpResponse
 # Create your views here.
 
 ##主页
-main_page = r"http://www.jingsijiaoyu.top/"       #安装需要修改
+main_page = r"http://jingsijiaoyu.top/"       #更换公众号需要修改
 
 #  微信授权url
 #scope=snsapi_userinfo   弹出授权页面，可以通过`openid`获取到昵称，头像，用户信息，不需要关注就能获取用户信息
 #scope=snsapi_base   不弹出页面，直接跳转，只能获取openid
 url="https://open.weixin.qq.com/connect/oauth2/authorize?appid={0}&redirect_uri={1}&response_type=code&scope=snsapi_userinfo&state=openid_required#wechat_redirect"
-app_id = 'wxe167e77a73dff8a7'      #安装需要修改
-AppSecret = '054b8df9ee37cfe2cce3d2a13c7f297f'   #安装需要修改
+app_id = 'wxe167e77a73dff8a7'      #更换公众号需要修改
+AppSecret = '054b8df9ee37cfe2cce3d2a13c7f297f'   #更换公众号需要修改
 
 
 
@@ -34,10 +34,10 @@ def r_oauth(request):
 
     url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={0}&redirect_uri={1}&response_type=code&scope=snsapi_userifo&state=openid_required#wechat_redirect"
     redirect_uri = main_page
-    print("1")
+
     redirect_uri = urllib.parse.quote(redirect_uri)
-    print(url)
-    print(redirect_uri)
+
+    print(url.format(app_id, redirect_uri))
     return redirect(url.format(app_id, redirect_uri)) # format拼接url
 
 
