@@ -17,6 +17,7 @@ AppSecret = '054b8df9ee37cfe2cce3d2a13c7f297f'   #更换公众号需要修改
 
 
 def page_not_found(request,exception):
+    # return redirect("/")
     return render(request, 'error404.html',status=404)
 
 def page_permission_denied(request,exception):
@@ -28,6 +29,20 @@ def page_inter_error(request):
 def get_index_page(request):
     return render(request, 'index.html',status=200)
 
+def get_teacher(request):
+    return HttpResponse("找老师页面")
+
+def get_student(request):
+    return HttpResponse("找学生页面")
+
+def teacherRegister(request):
+    return HttpResponse("老师注册页面")
+
+def studentRegister(request):
+    return HttpResponse("学生注册页面")
+
+def get_course(request):
+    return HttpResponse("课程页面")
 
 def r_oauth(request):
     # 授权
@@ -76,4 +91,3 @@ def get_user_info(request):
     # 设置cookie 将用户信息保存到cookie里面
     response.set_cookie("userinfo", json.dumps(d), max_age=7 * 24 * 3600)  # 设置过期时间7 天
     return response
-
