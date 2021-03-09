@@ -1,6 +1,7 @@
 import urllib.parse, requests,json
 from django.shortcuts import render, redirect, HttpResponse
 
+
 # Create your views here.
 
 ##主页
@@ -12,7 +13,6 @@ main_page = r"http://jingsijiaoyu.top/"       #更换公众号需要修改
 url="https://open.weixin.qq.com/connect/oauth2/authorize?appid={0}&redirect_uri={1}&response_type=code&scope=snsapi_userinfo&state=openid_required#wechat_redirect"
 app_id = 'wxe167e77a73dff8a7'      #更换公众号需要修改
 AppSecret = '054b8df9ee37cfe2cce3d2a13c7f297f'   #更换公众号需要修改
-
 
 
 
@@ -30,13 +30,13 @@ def get_index_page(request):
     return render(request, 'index.html',status=200)
 
 def get_teacher(request):
-    return HttpResponse("找老师页面")
+    return render(request,'web/teacher.html')
 
 def get_student(request):
     return HttpResponse("找学生页面")
 
 def teacherRegister(request):
-    return HttpResponse("老师注册页面")
+    return render(request,'web/teacherregister.html')
 
 def studentRegister(request):
     return HttpResponse("学生注册页面")
